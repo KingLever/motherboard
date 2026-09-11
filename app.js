@@ -1,23 +1,179 @@
 import * as THREE from 'three';
 import {OrbitControls} from './OrbitControls.js';
 const slides=[
-{name:'Visão geral',title:'Uma placa.\nTodo o sistema.',cat:'01 / Anatomia do computador',desc:'Explore a base que conecta os componentes do computador. Cada setor tem um papel no funcionamento do conjunto.',label:'Explore em 3D',detail:'Gire a placa, aproxime os detalhes ou escolha um componente. Use as setas para seguir a apresentação.',loc:'12 slides · exploração livre',pos:[0,0,0]},
-{name:'CPU',title:'O centro de\nprocessamento',cat:'02 / Processador e soquete',desc:'A CPU executa as instruções dos programas. O soquete estabelece a conexão elétrica e mantém o processador na posição correta.',label:'Encaixe e compatibilidade',detail:'O processador precisa ser compatível com o soquete e com o firmware da placa. O cooler foi omitido para revelar essa região.',loc:'Região superior central',pos:[-1.3,0,-2.6]},
-{name:'VRM',title:'Energia na\nmedida certa',cat:'03 / Reguladores de tensão',desc:'O VRM converte e regula a energia que alimenta o processador, usando estágios de potência, indutores e capacitores.',label:'Controle térmico',detail:'Dissipadores ajudam a remover o calor dos circuitos de potência. As aletas aumentam a área de contato com o ar.',loc:'Ao redor do soquete',pos:[-3.4,0,-3.5]},
-{name:'Memória',title:'Espaço para\no que está ativo',cat:'04 / Slots de memória RAM',desc:'A RAM guarda temporariamente os dados e as instruções em uso. Os módulos se conectam aos slots DIMM, próximos ao processador.',label:'Antes de instalar',detail:'A geração de memória e a sequência de instalação dependem da placa. Consulte o manual para ativar os canais corretamente.',loc:'Lado direito do processador',pos:[2.1,0,-2.6]},
-{name:'Alimentação',title:'A entrada\nde energia',cat:'05 / Conectores ATX e EPS',desc:'O conector ATX de 24 pinos alimenta a placa. O conector EPS, próximo ao topo, fornece energia ao circuito do processador.',label:'Conectores diferentes',detail:'ATX, EPS e os conectores de alimentação da GPU têm funções e encaixes próprios. O modelo mostra ATX de 24 pinos e EPS de 8 pinos.',loc:'Borda direita e canto superior',pos:[4.2,0,-1.7]},
-{name:'PCIe',title:'Espaço para\nexpandir',cat:'06 / Slots de expansão',desc:'Os slots PCI Express recebem placas de vídeo, rede, captura e outros dispositivos. O slot longo superior costuma ser usado para a GPU.',label:'Formato e conexão',detail:'Um slot fisicamente x16 pode ter menos pistas elétricas. A quantidade de pistas e seu compartilhamento dependem da placa e da CPU.',loc:'Metade inferior da placa',pos:[-1.5,0,2]},
-{name:'M.2',title:'Armazenamento\ndireto na placa',cat:'07 / Conector M.2',desc:'O formato M.2 permite instalar um SSD compacto diretamente na placa-mãe. SSDs NVMe usam a interface PCI Express.',label:'Formato não é protocolo',detail:'Nem todo encaixe M.2 aceita os mesmos dispositivos. Comprimento, chave e suporte a SATA ou NVMe variam conforme o conector.',loc:'Entre a CPU e os slots PCIe',pos:[-.7,0,.15]},
-{name:'Chipset',title:'Conexões\ncoordenadas',cat:'08 / Chipset',desc:'O chipset amplia as conexões disponíveis, atendendo parte das portas USB, SATA e outras interfaces da placa.',label:'Caminhos de comunicação',detail:'Memória e alguns slots PCIe se conectam diretamente à CPU. Outros dispositivos passam pelo chipset. Essa divisão varia entre plataformas.',loc:'Quadrante inferior direito',pos:[2.4,0,2.5]},
-{name:'SATA',title:'Mais unidades\nde armazenamento',cat:'09 / Portas SATA',desc:'As portas SATA conectam SSDs de 2,5 polegadas e discos rígidos usando um cabo de dados.',label:'Dados e energia',detail:'O cabo SATA da placa transporta dados. A alimentação da unidade vem de outro cabo, ligado à fonte do computador.',loc:'Borda lateral direita',pos:[4,0,3.3]},
-{name:'Painel traseiro',title:'O computador\nse conecta',cat:'10 / Entradas, saídas e áudio',desc:'O painel traseiro reúne conexões externas, como USB, rede, vídeo e áudio. Os circuitos de áudio ocupam uma região próxima à borda.',label:'Portas de vídeo',detail:'As saídas de vídeo da placa dependem do suporte da plataforma e do processador. Tipos e quantidades de portas variam entre modelos.',loc:'Borda esquerda da placa',pos:[-4.5,0,-2.5]},
-{name:'UEFI e bateria',title:'Antes do sistema\noperacional',cat:'11 / Firmware e relógio',desc:'O firmware UEFI inicializa o hardware e inicia o carregamento do sistema. A bateria mantém o relógio e funções de retenção quando falta energia.',label:'Memória não volátil',detail:'O firmware fica em um chip de memória flash. A bateria não armazena o firmware e não alimenta o computador.',loc:'Região inferior central',pos:[.4,0,4.4]},
-{name:'Conectores',title:'Os detalhes que\ncompletam o PC',cat:'12 / Conexões internas',desc:'Os conectores internos ligam ventoinhas, portas USB do gabinete, áudio frontal, botão de energia e indicadores luminosos.',label:'Cada pino tem uma função',detail:'A posição dos pinos e os limites elétricos dependem do modelo. Use o manual para identificar cada ligação antes da montagem.',loc:'Bordas superior e inferior',pos:[1.7,0,5.6]}
+  {
+    "name": "Overview",
+    "title": "One board.\nA whole system.",
+    "cat": "01 / Computer anatomy",
+    "desc": "The motherboard is the main circuit board inside a computer. It connects the processor, memory, storage, and other devices so they can communicate and work together.",
+    "label": "How it connects everything",
+    "detail": "Copper tracks carry signals between components, while power circuits distribute electricity. Rotate the model, click a component, or use the arrows to explore each part.",
+    "loc": "12 slides · Explore freely",
+    "pos": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CPU",
+    "title": "The processing\ncenter",
+    "cat": "02 / CPU and socket",
+    "desc": "The CPU, or central processing unit, carries out program instructions. It performs calculations and processes the data needed to run applications and the operating system.",
+    "label": "What the socket does",
+    "detail": "The socket holds the CPU in place and connects it electrically to the motherboard. The CPU must match the socket and firmware. Its cooler is hidden here so you can see the processor.",
+    "loc": "Upper center of the board",
+    "pos": [
+      -1.3,
+      0,
+      -2.6
+    ]
+  },
+  {
+    "name": "VRM",
+    "title": "Steady power\nfor the CPU",
+    "cat": "03 / Voltage regulation",
+    "desc": "The VRM, or voltage regulator module, converts power from the power supply into the lower, stable voltage the CPU needs. It adjusts the supply as the processor's workload changes.",
+    "label": "Keeping the power circuits cool",
+    "detail": "Inductors and capacitors help smooth the electrical output. Metal heatsinks carry heat away from the power circuits, and their fins provide more surface area for cooling.",
+    "loc": "Around the CPU socket",
+    "pos": [
+      -3.4,
+      0,
+      -3.5
+    ]
+  },
+  {
+    "name": "Memory",
+    "title": "A workspace\nfor active data",
+    "cat": "04 / RAM and DIMM slots",
+    "desc": "RAM, or random access memory, temporarily holds the data and instructions the CPU is using. It provides fast access while you open applications, browse the web, or play games.",
+    "label": "What the slots do",
+    "detail": "DIMM slots hold the memory modules and connect them to the system. RAM loses its contents when power is removed. The memory generation and slot arrangement must match the motherboard.",
+    "loc": "To the right of the CPU",
+    "pos": [
+      2.1,
+      0,
+      -2.6
+    ]
+  },
+  {
+    "name": "Power",
+    "title": "Power enters\nthe board",
+    "cat": "05 / ATX and EPS connectors",
+    "desc": "Power connectors bring electricity from the power supply to the motherboard. The 24-pin ATX connector supplies the board, while the EPS connector feeds the CPU's power circuits.",
+    "label": "Two different connections",
+    "detail": "This model shows a 24-pin ATX connector and an 8-pin EPS connector. They have different roles and shapes. CPU power cables and graphics card power cables are not interchangeable.",
+    "loc": "Right edge and upper corner",
+    "pos": [
+      4.2,
+      0,
+      -1.7
+    ]
+  },
+  {
+    "name": "PCIe",
+    "title": "Room to\nadd more",
+    "cat": "06 / Expansion slots",
+    "desc": "PCI Express slots let you add hardware such as a graphics card, a network card, or a capture card. They provide a fast data connection between an expansion card and the computer.",
+    "label": "What the long slot is for",
+    "detail": "The upper long slot is usually used for a graphics card. PCIe lanes carry data; more lanes can provide more bandwidth. A slot's physical length does not always tell you how many lanes are connected.",
+    "loc": "Lower half of the board",
+    "pos": [
+      -1.5,
+      0,
+      2
+    ]
+  },
+  {
+    "name": "M.2",
+    "title": "Storage on\nthe board",
+    "cat": "07 / M.2 storage connector",
+    "desc": "An M.2 connector lets you install a compact solid-state drive directly on the motherboard. The SSD stores the operating system, applications, and files, even when the computer is off.",
+    "label": "How it transfers data",
+    "detail": "NVMe SSDs communicate through PCI Express. M.2 describes the physical format, so the drive must also match the connector's supported length, key, and SATA or NVMe interface.",
+    "loc": "Between the CPU and PCIe slots",
+    "pos": [
+      -0.7,
+      0,
+      0.15
+    ]
+  },
+  {
+    "name": "Chipset",
+    "title": "Connecting\nmore devices",
+    "cat": "08 / Chipset",
+    "desc": "The chipset manages communication for many of the motherboard's connections, including some USB ports, SATA ports, and expansion slots. It links these devices to the processor.",
+    "label": "Different paths to the CPU",
+    "detail": "RAM and some PCIe devices connect directly to the CPU. Other devices communicate through the chipset. The exact layout depends on the processor and motherboard.",
+    "loc": "Lower-right area",
+    "pos": [
+      2.4,
+      0,
+      2.5
+    ]
+  },
+  {
+    "name": "SATA",
+    "title": "Connections\nfor more storage",
+    "cat": "09 / SATA ports",
+    "desc": "SATA ports connect hard drives and 2.5-inch SATA SSDs to the motherboard. A data cable carries files and commands between each drive and the computer.",
+    "label": "Data and power are separate",
+    "detail": "A SATA data cable plugs into the motherboard. The drive also needs a separate power cable from the power supply. These drives keep stored files after the computer is turned off.",
+    "loc": "Right edge of the board",
+    "pos": [
+      4,
+      0,
+      3.3
+    ]
+  },
+  {
+    "name": "Rear I/O",
+    "title": "A connection\nto the outside",
+    "cat": "10 / External ports and audio",
+    "desc": "The rear input/output panel connects external devices. USB ports connect keyboards and mice, Ethernet connects a wired network, and audio ports connect speakers or microphones.",
+    "label": "Video and sound",
+    "detail": "Video outputs can connect a monitor when the platform and processor support them. Onboard audio circuits handle sound input and output. Available ports vary by motherboard.",
+    "loc": "Left edge of the board",
+    "pos": [
+      -4.5,
+      0,
+      -2.5
+    ]
+  },
+  {
+    "name": "UEFI & battery",
+    "title": "Before the\nsystem starts",
+    "cat": "11 / Firmware and clock",
+    "desc": "UEFI firmware initializes the hardware and starts loading the operating system when you turn on the computer. It also provides settings for options such as the boot device.",
+    "label": "What the battery does",
+    "detail": "The coin-cell battery keeps the real-time clock running when external power is disconnected and may support retained settings. The firmware itself is stored in flash memory; the battery does not store it.",
+    "loc": "Lower-center area",
+    "pos": [
+      0.4,
+      0,
+      4.4
+    ]
+  },
+  {
+    "name": "Headers",
+    "title": "Connecting\nthe case",
+    "cat": "12 / Internal headers",
+    "desc": "Internal headers connect the motherboard to case fans, front USB ports, audio jacks, the power button, and indicator lights. They make the case controls and connections work.",
+    "label": "Each connection has a purpose",
+    "detail": "Fan headers provide power and can support speed monitoring and control. Front-panel headers connect buttons and LEDs. USB and audio headers connect the case ports; each uses a specific pin layout.",
+    "loc": "Upper and lower edges",
+    "pos": [
+      1.7,
+      0,
+      5.6
+    ]
+  }
 ];
 let current=0,exploded=false,tween=null;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $=id=>document.getElementById(id),vp=$('viewport');
 const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(37,1,.1,100);camera.position.set(12,16,15);
-let renderer;try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(e){$('loading').textContent='O navegador não conseguiu iniciar o 3D. Ative a aceleração gráfica e recarregue.';throw e;}
+let renderer;try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(e){$('loading').textContent='The browser could not start 3D. Enable hardware acceleration and reload.';throw e;}
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0,0);renderer.outputColorSpace=THREE.SRGBColorSpace;vp.appendChild(renderer.domElement);$('loading').remove();
 const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.08;controls.minDistance=5;controls.maxDistance=35;controls.maxPolarAngle=Math.PI*.86;controls.autoRotateSpeed=.55;
 scene.add(new THREE.HemisphereLight(0xd6efff,0x182019,2.8));const light=new THREE.DirectionalLight(0xffffff,3);light.position.set(-5,14,6);scene.add(light);const rim=new THREE.DirectionalLight(0xb9f977,1.6);rim.position.set(8,4,-4);scene.add(rim);
@@ -55,8 +211,8 @@ const tagButtons=slides.slice(1).map((s,i)=>{const b=document.createElement('but
 slides.forEach((s,i)=>{const b=document.createElement('button');b.innerHTML=`<b>${String(i+1).padStart(2,'0')}</b>${s.name}`;b.addEventListener('click',()=>select(i));$('rail').append(b)});
 function focus(pos,overview=false,top=false){const t=new THREE.Vector3(...pos);const dst=overview?new THREE.Vector3(12,16,15):t.clone().add(new THREE.Vector3(7.5,11,10));if(top)dst.copy(t).add(new THREE.Vector3(0,overview?19:13,.01));tween={from:camera.position.clone(),to:dst,start:performance.now(),targetFrom:controls.target.clone(),targetTo:t};if(reduced){camera.position.copy(dst);controls.target.copy(t);tween=null;}}
 function select(i){current=Math.max(0,Math.min(11,i));const s=slides[current];$('category').textContent=s.cat;$('title').innerText=s.title;$('description').textContent=s.desc;$('detailLabel').textContent=s.label;$('detail').textContent=s.detail;$('location').textContent=s.loc;$('counter').textContent=`${String(current+1).padStart(2,'0')} / 12`;$('selection').textContent=s.name;$('prev').disabled=current===0;$('next').disabled=current===11;[...$('rail').children].forEach((b,j)=>{b.classList.toggle('active',j===current);b.setAttribute('aria-current',j===current?'step':'false')});picks.forEach(o=>{o.material.emissive.setHex(o.userData.sector===current?0x385914:0x000000);o.material.emissiveIntensity=.45});tagButtons.forEach((b,j)=>b.classList.toggle('active',j+1===current));focus(s.pos,current===0);}
-$('prev').onclick=()=>select(current-1);$('next').onclick=()=>select(current+1);$('home').onclick=()=>focus([0,0,0],true);$('top').onclick=()=>focus(slides[current].pos,current===0,true);$('explode').onclick=()=>{exploded=!exploded;$('explode').setAttribute('aria-pressed',exploded);$('explode').textContent=exploded?'Reunir peças':'Separar peças'};$('rotate').onclick=()=>{controls.autoRotate=!controls.autoRotate;$('rotate').setAttribute('aria-pressed',controls.autoRotate);$('rotate').textContent=controls.autoRotate?'Pausar giro':'Girar'};
-function zoom(f){tween=null;const offset=camera.position.clone().sub(controls.target);offset.setLength(THREE.MathUtils.clamp(offset.length()*f,controls.minDistance,controls.maxDistance));camera.position.copy(controls.target).add(offset)}$('plus').onclick=()=>zoom(.8);$('minus').onclick=()=>zoom(1.25);$('full').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{$('full').textContent='Use F11 para ampliar'}};document.addEventListener('fullscreenchange',()=>{$('full').textContent=document.fullscreenElement?'Sair da tela cheia':'Tela cheia ⛶'});
+$('prev').onclick=()=>select(current-1);$('next').onclick=()=>select(current+1);$('home').onclick=()=>focus([0,0,0],true);$('top').onclick=()=>focus(slides[current].pos,current===0,true);$('explode').onclick=()=>{exploded=!exploded;$('explode').setAttribute('aria-pressed',exploded);$('explode').textContent=exploded?'Reassemble parts':'Separate parts'};$('rotate').onclick=()=>{controls.autoRotate=!controls.autoRotate;$('rotate').setAttribute('aria-pressed',controls.autoRotate);$('rotate').textContent=controls.autoRotate?'Pause rotation':'Rotate'};
+function zoom(f){tween=null;const offset=camera.position.clone().sub(controls.target);offset.setLength(THREE.MathUtils.clamp(offset.length()*f,controls.minDistance,controls.maxDistance));camera.position.copy(controls.target).add(offset)}$('plus').onclick=()=>zoom(.8);$('minus').onclick=()=>zoom(1.25);$('full').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{$('full').textContent='Press F11 for full screen'}};document.addEventListener('fullscreenchange',()=>{$('full').textContent=document.fullscreenElement?'Exit full screen':'Full screen ⛶'});
 document.addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();select(current+1)}if(e.key==='ArrowLeft'){e.preventDefault();select(current-1)}if(e.key==='Home'){e.preventDefault();select(0)}});
 controls.addEventListener('start',()=>tween=null);let down;renderer.domElement.addEventListener('pointerdown',e=>down=[e.clientX,e.clientY]);renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;const r=renderer.domElement.getBoundingClientRect(),mouse=new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),ray=new THREE.Raycaster();ray.setFromCamera(mouse,camera);const hit=ray.intersectObjects(picks)[0];if(hit)select(hit.object.userData.sector)});
 new ResizeObserver(()=>{const w=vp.clientWidth,h=vp.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)}).observe(vp);
